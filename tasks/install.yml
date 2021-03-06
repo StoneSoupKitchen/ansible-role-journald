@@ -1,0 +1,11 @@
+# Install the journald package.
+---
+- name: Define journald_package
+  set_fact:
+    journald_package: "{{ __journald_package }}"
+  when: journald_package is not defined
+
+- name: Install journald
+  apt:
+    name: "{{ journald_package }}"
+    state: "{{ journald_package_state }}"

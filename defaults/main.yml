@@ -1,0 +1,5 @@
+---
+# State of the systemd-journal-remote package. Use `present` to make sure the
+# package is installed, or use `latest` to make sure the package is always at
+# the latest version.
+journald_package_state: present
