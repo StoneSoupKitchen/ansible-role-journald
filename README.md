@@ -1,8 +1,8 @@
-[![CI](https://github.com/StoneSoupKitchen/ansible-role-cron/actions/workflows/ci.yml/badge.svg)](https://github.com/StoneSoupKitchen/ansible-role-cron/actions/workflows/ci.yml)
+[![CI](https://github.com/StoneSoupKitchen/ansible-role-journald/actions/workflows/ci.yml/badge.svg)](https://github.com/StoneSoupKitchen/ansible-role-journald/actions/workflows/ci.yml)
 
-# Ansible role: cron
+# Ansible role: journald
 
-An Ansible role for configuring cron and at daemons.
+An Ansible role for configuring journald.
 
 ## Requirements
 
@@ -17,17 +17,15 @@ and their default values.
 
 | Name                     | Default Value | Description                      |
 | ------------------------ | ------------- | -------------------------------- |
-| `at_package` | at | Name of the at package. Use `name=ver` format to pin. |
-| `at_package_state` | present | Installation state for the at package. |
-| `cron_package` | cron | Name of the cron package. Use `name=ver` format to pin. |
-| `cron_package_state` | present | Installation state for the cron package. |
+| `journald_package` | systemd-journal-remote | Name of the journald package. Use `name=ver` format to pin. |
+| `journald_package_state` | present | Installation state for the journald package. |
 
 ## Examples
 
 ```yaml
 - hosts: all
   roles:
-    - stonesoupkitchen.cron
+    - stonesoupkitchen.journald
 ```
 
 ## Development
