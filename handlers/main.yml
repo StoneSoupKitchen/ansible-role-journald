@@ -3,3 +3,5 @@
   service:
     name: systemd-journald
     state: restarted
+  when:
+    - ansible_virtualization_type != "docker"
