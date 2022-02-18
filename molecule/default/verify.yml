@@ -7,6 +7,45 @@
     package_facts:
       manager: "auto"
 
-  - name: Example assertion
-    assert:
-      that: true
+  - name: Package systemd-journal-remote should be installed
+    package:
+      name: systemd-journal-remote
+      state: present
+    check_mode: true
+    register: install
+    failed_when: (install is changed) or (install is failed)
+
+  - name: File /etc/systemd/journald.conf should exist with correct permissions
+    file:
+      path: /etc/systemd/journald.conf
+      state: file
+      owner: root
+      group: root
+      mode: '0644'
+    check_mode: true
+    register: config
+    failed_when: (config is changed) or (config is failed)
+
+  - name: "journald.conf: Compress defaults to 'yes'"
+    lineinfile:
+      path: /etc/systemd/journald.conf
+      line: "Compress=yes"
+    check_mode: true
+    register: config
+    failed_when: (config is changed) or (config is failed)
+
+  - name: "journald.conf: ForwardToSyslog defaults to 'yes'"
+    lineinfile:
+      path: /etc/systemd/journald.conf
+      line: "ForwardToSyslog=yes"
+    check_mode: true
+    register: config
+    failed_when: (config is changed) or (config is failed)
+
+  - name: "journald.conf: Storage defaults to 'persistent'"
+    lineinfile:
+      path: /etc/systemd/journald.conf
+      line: "Storage=persistent"
+    check_mode: true
+    register: config
+    failed_when: (config is changed) or (config is failed)
